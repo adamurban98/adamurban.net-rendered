@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Ádám Urbán</title>
+    <link>http://adamurban.net/categories/</link>
+    <description>Recent content in Categories on Ádám Urbán</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 25 Sep 2017 06:00:00 +0600</lastBuildDate>
+    
+	<atom:link href="http://adamurban.net/categories/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>CV</title>
+      <link>http://adamurban.net/categories/cv/</link>
+      <pubDate>Mon, 25 Sep 2017 06:00:00 +0600</pubDate>
+      
+      <guid>http://adamurban.net/categories/cv/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Representation</title>
+      <link>http://adamurban.net/categories/representation/</link>
+      <pubDate>Fri, 02 Mar 2018 12:00:00 +0000</pubDate>
+      
+      <guid>http://adamurban.net/categories/representation/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

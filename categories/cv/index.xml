@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>CV on Ádám Urbán</title>
+    <link>http://adamurban.net/categories/cv/</link>
+    <description>Recent content in CV on Ádám Urbán</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 25 Sep 2017 06:00:00 +0600</lastBuildDate>
+    
+	<atom:link href="http://adamurban.net/categories/cv/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Curriculum Vitæ</title>
+      <link>http://adamurban.net/cv/</link>
+      <pubDate>Mon, 25 Sep 2017 06:00:00 +0600</pubDate>
+      
+      <guid>http://adamurban.net/cv/</guid>
+      <description>Printable CV For printing, please use the pdf version of my CV.
+Work Experience Power Engineering Internship @ Rolls-Royce plc Derby, UK | Jun 2018 - Aug 2018
+Intern to be trough the IET Power Academy programme.
+Web development Internship @ Promiseo s.r.o. Kosice, SK | Jul 2017 - Sep 2017
+Tasks and responsibilities  Transcription of Photoshop designs to HTML, CSS, JS Coding of email newsletters Configuring Wordpress sites  Skills enhanced  Front-end workflow HTML, CSS (SCSS) Javascript &amp;amp; JQuery Wordpress  Education Imperial College London MEng Electronic and Information Engineering</description>
+    </item>
+    
+  </channel>
+</rss>

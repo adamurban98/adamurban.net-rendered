@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Home on Ádám Urbán</title>
+    <link>http://adamurban.net/</link>
+    <description>Recent content in Home on Ádám Urbán</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Thu, 28 Sep 2017 08:00:00 +0600</lastBuildDate>
+    
+	<atom:link href="http://adamurban.net/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Typography</title>
+      <link>http://adamurban.net/typography/</link>
+      <pubDate>Thu, 28 Sep 2017 08:00:00 +0600</pubDate>
+      
+      <guid>http://adamurban.net/typography/</guid>
+      <description>Here is a paragraph. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+Heading 2 Another one. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+Heading 3 Yet another, but centered! Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</description>
+    </item>
+    
+    <item>
+      <title>Academic Representative</title>
+      <link>http://adamurban.net/rep/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://adamurban.net/rep/</guid>
+      <description>Why I became a year representative?  “I am not a product of my circumstances. I am a product of my decisions.”
+&amp;mdash; Stephen R. Covey (Author of The 7 Habits of [&amp;hellip;], a classic book much less cheesy than its title)
+ Our university experience depends on us just as much as on our lecturers and professors. Imperial is a top-of-the-world university because exceptional researchers meet exceptional students. This synergy needs a well functional feedback loop, and that is my job as your Year Academic Representative.</description>
+    </item>
+    
+    <item>
+      <title>Curriculum Vitæ</title>
+      <link>http://adamurban.net/cv/</link>
+      <pubDate>Mon, 25 Sep 2017 06:00:00 +0600</pubDate>
+      
+      <guid>http://adamurban.net/cv/</guid>
+      <description>Printable CV For printing, please use the pdf version of my CV.
+Work Experience Power Engineering Internship @ Rolls-Royce plc Derby, UK | Jun 2018 - Aug 2018
+Intern to be trough the IET Power Academy programme.
+Web development Internship @ Promiseo s.r.o. Kosice, SK | Jul 2017 - Sep 2017
+Tasks and responsibilities  Transcription of Photoshop designs to HTML, CSS, JS Coding of email newsletters Configuring Wordpress sites  Skills enhanced  Front-end workflow HTML, CSS (SCSS) Javascript &amp;amp; JQuery Wordpress  Education Imperial College London MEng Electronic and Information Engineering</description>
+    </item>
+    
+    <item>
+      <title>Contact</title>
+      <link>http://adamurban.net/contact/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://adamurban.net/contact/</guid>
+      <description>Email I answer all of them.
+ Personal 1 adamurban98@gmail.com Personal 2 adam@adamurban.net Academic adam.urban17@imperial.ac.uk  Professional  LinkedIn My full CV site Single page printable CV  Social media I only use Facebook. Occasionally Instagram, but only for stalking.</description>
+    </item>
+    
+    <item>
+      <title>Mastermind</title>
+      <link>http://adamurban.net/mastermind/</link>
+      <pubDate>Sat, 17 Mar 2018 16:23:24 +0000</pubDate>
+      
+      <guid>http://adamurban.net/mastermind/</guid>
+      <description>Technical notes This document is intended as a suplementary description of my solution to the 3rd assignment of module Introduction to Computing at Imperial College London.
+When dealing with code, C++ is assumed and used, unless stated othwerwise. C++11 features are used.
+Mastermind rules In the beginning the code maker generates a valid code, which will be refered to as codeword. A valid code is any arbitrary sequence of $n$ non-negative integers - colours -, each from the range $[0,k)$.</description>
+    </item>
+    
+    <item>
+      <title>EIE DepRep 2018 campaign</title>
+      <link>http://adamurban.net/deprep2018/</link>
+      <pubDate>Fri, 02 Mar 2018 12:00:00 +0000</pubDate>
+      
+      <guid>http://adamurban.net/deprep2018/</guid>
+      <description>Dear Fellow EIE students at Imperial College London, I am announcing that I am running for the position of Departmental Representative of EIE in the Leadership election of Imperial College Student&amp;rsquo;s Union 2018.
+What I want to accomplish  More Internships for EIE Closer ties to DoCSoc A clear direction for EIE  How I want to accomplish these goals? 1. More Internships for EIE The problem is that Internships are hard to get for people from EEE in general.</description>
+    </item>
+    
+  </channel>
+</rss>
