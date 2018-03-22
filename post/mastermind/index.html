@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='an algorithm for the generalised version of the Mastermind game'>
+<meta name='theme-color' content='#ffcd00'>
+
+<meta property='og:title' content='Mastermind | Ádám Urbán'>
+<meta property='og:description' content='an algorithm for the generalised version of the Mastermind game'>
+<meta property='og:url' content='http://adamurban.net/post/mastermind/'>
+<meta property='og:site_name' content='Ádám Urbán'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:published_time' content='2018-03-21T10:23:24Z'/><meta property='article:modified_time' content='2018-03-21T10:23:24Z'/><meta property='fb:admins' content='adamurban1998'><meta name='twitter:card' content='summary'>
+
+<meta name="generator" content="Hugo 0.36" />
+
+  <title>Mastermind | Ádám Urbán</title>
+  <link rel='canonical' href='http://adamurban.net/post/mastermind/'>
+  
+  
+  <link rel='icon' href='/images/logo.png'>
+<link rel='stylesheet' href='/assets/css/main.045169bd.css'><link rel='stylesheet' href='/css/custom.css'><style>
+:root{--color-accent:#ffcd00;}
+</style>
+
+</head>
+
+
+<body class='page type-post has-sidebar sidebar-sticky has-emoji'>
+
+  <div class='site'>
+
+    <a class='screen-reader-text' href='#main-menu'>Skip to Main Menu</a>
+
+<div id='sidebar' class='sidebar'>
+  <div class='container'><section class='widget widget-about sep-after'>
+  <header>
+    
+    <div class='logo'>
+      <a href='/'>
+        <img src='/images/adam_round.png'>
+      </a>
+    </div>
+    
+    <h2 class='title site-title '>
+    Ádám Urbán
+    </h2>
+    <div class='desc'>
+    Student @ Imperial College
+    </div>
+  </header>
+
+</section>
+<section class='widget widget-social_menu sep-after'><nav aria-label='Social Menu'>
+    <ul><li>
+        <a href='https://github.com/adamurban98' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Github account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://facebook.com/adamurban1998' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Facebook account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='mailto:adamurban98@gmail.com' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Contact via Email</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+  <polyline points="22,6 12,13 2,6"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://linkedin.com/in/adamurban98' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Linkedin account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+  <rect x="2" y="9" width="4" height="12"/>
+  <circle cx="4" cy="4" r="2"/>
+  
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</section>
+</div>
+</div>
+
+    <div class='main'>
+
+      <nav id='main-menu' class='main-menu' aria-label='Main Menu'>
+  <div class='container'>
+    <a class='screen-reader-text' href='#content'>Skip to Content</a>
+
+<button id='sidebar-toggler' class='hamburger hamburger--arrow sidebar-toggler' type='button' aria-controls='sidebar' aria-expanded='false'>
+  <span class='screen-reader-text'>Toggle Sidebar</span>
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+    <ul><li class='item'>
+        <a href='/'>Home</a>
+      </li><li class='item'>
+        <a href='/rep/'>Representation</a>
+      </li><li class='item'>
+        <a href='/cv/'>cv</a>
+      </li><li class='item'>
+        <a href='https://www.linkedin.com/in/adamurban98/'>Linked-In</a>
+      </li><li class='item'>
+        <a href='/contact/'>Contact</a>
+      </li></ul>
+  </div>
+</nav>
+
+
+      <header id='header' class='header site-header'>
+        <div class='container sep-after'>
+          <div class='header-info'><p class='site-title title'>Ádám Urbán</p><p class='desc site-desc'>Student @ Imperial College</p>
+          </div>
+        </div>
+      </header>
+
+      <main id='content'>
+
+
+<article lang='en' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Mastermind</h1>
+      
+<p class='desc'>an algorithm for the generalised version of the Mastermind game</p>
+
+
+    </div>
+    
+<div class='entry-meta'>
+  <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+<span class='screen-reader-text'>Posted on </span>
+  <time class='entry-date' datetime='2018-03-21T10:23:24Z'>2018, Mar 21</time>
+</span>
+
+  
+  
+<span class='reading-time'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <circle cx="12" cy="12" r="10"/>
+  <polyline points="12 6 12 12 15 15"/>
+  
+</svg>
+14 mins read
+</span>
+
+
+</div>
+
+
+  </div>
+</header>
+
+  
+  
+<details class='container entry-toc'>
+  <summary class='title'>
+    <span>Table of Contents</span>
+  </summary>
+  <nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#technical-notes">Technical notes</a></li>
+<li><a href="#introduction">Introduction</a>
+<ul>
+<li><a href="#mastermind-rules">Mastermind rules</a></li>
+<li><a href="#the-objective-of-my-solution">The objective of my solution</a></li>
+<li><a href="#formal-definitions-of-w-and-b">Formal definitions of $w$ and $b$</a></li>
+</ul></li>
+<li><a href="#the-code-maker">The code maker</a>
+<ul>
+<li><a href="#complexity-of-the-code-maker-s-algorithms">Complexity of the <em>code maker&rsquo;s</em> algorithms</a></li>
+</ul></li>
+<li><a href="#the-code-solver">The code solver</a>
+<ul>
+<li><a href="#review-of-strategies">Review of strategies</a></li>
+<li><a href="#approach-for-n-leq-10-player-that-makes-no-mistakes">Approach for $n \leq 10$: Player that makes no mistakes</a>
+<ul>
+<li><a href="#generating-a-set-of-possible-codes">Generating a set of possible codes</a></li>
+<li><a href="#elimination-of-codes">Elimination of codes</a></li>
+<li><a href="#complexity-and-performance">Complexity and performance</a></li>
+</ul></li>
+<li><a href="#approach-for-n-10-binary-search">Approach for $n&gt;10$: Binary search</a>
+<ul>
+<li><a href="#stage-1-monochromatic-queries">Stage 1: Monochromatic queries</a>
+<ul>
+<li><a href="#example">Example</a></li>
+<li><a href="#complexity-of-stage-1">Complexity of Stage 1</a></li>
+</ul></li>
+<li><a href="#stage-2-finding-a-dummy">Stage 2: Finding a dummy</a>
+<ul>
+<li><a href="#example-1">Example</a></li>
+<li><a href="#complexity-of-stage-2">Complexity of Stage 2</a></li>
+</ul></li>
+<li><a href="#stage-3-binary-search">Stage 3: Binary search</a>
+<ul>
+<li><a href="#interval-tree">Interval tree</a></li>
+<li><a href="#complexity-od-stage-3">Complexity od Stage 3</a></li>
+</ul></li>
+<li><a href="#complexity-of-the-binary-search-algorithm">Complexity of the Binary search algorithm</a>
+<ul>
+<li><a href="#comparing-with-other-systematic-algorithms">Comparing with other systematic algorithms</a></li>
+<li><a href="#optimizations-and-performance-boosts">Optimizations and performance boosts</a></li>
+</ul></li>
+<li><a href="#performance-and-summary">Performance and summary</a></li>
+<li><a href="#notes-on-design-patterns-used">Notes on design patterns used</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#references">References</a></li>
+</ul></li>
+</ul>
+</nav>
+</details>
+
+
+  <div class='container entry-content'>
+  
+
+<style>
+    @media print {
+    nav#main-menu{
+        display: none;
+    }
+    div.entry-meta{
+        display: none;
+    }
+    div.main::before{
+        content: "This is a printed version. For the online version please visit: http://adamurban.net/post/mastermind";
+    }
+}
+</style>
+
+<h2 id="technical-notes">Technical notes</h2>
+
+<p>This document is intended as a suplementary description of my solution to the 3rd assignment of module <em>Introduction to Computing at Imperial College London</em>.</p>
+
+<p>When dealing with code, <code>C++</code> is assumed and used, unless stated othwerwise. <code>C++11</code> features are used.</p>
+
+<p>The <strong>sourcecode</strong> is accesible in my <a href="https://github.com/adamurban98/mastermind" target="_blank">github repository</a>.</p>
+
+<p><strong>Typographical notes</strong></p>
+
+<ul>
+<li><em>Cursive</em> signifies terms specific to this document and solution,</li>
+<li><strong><em>Bold and cursive</em></strong> singnifies a definition of such a term,</li>
+<li><strong>bold</strong> is used for general highlighting, or small headlines.</li>
+</ul>
+
+<h2 id="introduction">Introduction</h2>
+
+<h3 id="mastermind-rules">Mastermind rules</h3>
+
+<p>In the beginning the <strong><em>code maker</em></strong> generates a valid <em>code</em>, which will be refered to as <strong><em>codeword</em></strong>.</p>
+
+<p>A valid <strong><em>code</em></strong> is any arbitrary sequence of $n$ non-negative integers (<em>colors</em>), each from the range $[0,k)$. Since in the original version of Mastermind the codes consist of &ldquo;colors&rdquo; instead of non-negative integers, in this document we will use the term <strong><em>color</em></strong> as a shorthand in a similar meaning. Also, in the original version the parameters are kept constant as follows: $n=4, k=6$, this document, however, considers the general case.</p>
+
+<p>Following this, the <strong><em>code solver</em></strong> can <strong><em>query</em></strong> a valid code of his choice and is given a <strong><em>response</em></strong> of two integers $b$ and $w$. These correspond to the <em>black and white pegs</em> in the original game.</p>
+
+<p><strong>The objective of the game</strong> is to guess the <em>codeword</em> in the least possible number of <em>queries</em>. A game is only considered as <strong>finished</strong> after the <em>solver</em> has <em>querried</em> the correct <em>codeword</em>, even if he might have deduced the <em>codeword</em> from his previous <em>querries</em>.</p>
+
+<h3 id="the-objective-of-my-solution">The objective of my solution</h3>
+
+<p>The objective of my solution is to twofold: Firstly, it is to guess the <em>codeword</em> in the least amount of <em>queries</em>, but also to provide an algorithm suitable for large $n$ and $k$, with realistic computational complexities.</p>
+
+<h3 id="formal-definitions-of-w-and-b">Formal definitions of $w$ and $b$</h3>
+
+<p>$b$ is always equal to the number of correctly guessed <em>colors</em> (<em>i.e.</em> correct <em>colors</em> on the correct position). Formally: Let the code maker&rsquo;s <em>codeword</em> be $c_1 c_2 c_3 &hellip; c_{n-1}$ and the <em>queried</em> code $a_1 a_2 a_3 &hellip; a_{n-1}$. $b$ equals to the number of indeces $i$ such that $c_i = a_i$.</p>
+
+<p>Commonly and vaguely, $w$ is defined as the number of incorrectly positioned colors in an <em>query</em>. Formally: Let $C_i$ and $A_i$ be the number of occurences of <em>color</em> $i$ in the secret code and the <em>query</em> code, respectively. Then:</p>
+
+<p>$$ w = \biggl( {\sum_{i=0}^{k-1} min(C_i, A_i)} \biggr)  - b $$</p>
+
+<h2 id="the-code-maker">The code maker</h2>
+
+<p>Let us begin with the <em>code maker</em> as this player needs a significantly simpler algorithm.</p>
+
+<p>The approach for $b$ is self evident. The calculation of $w$ is done by implementing the definition formula above. This algorithm can be <strong>optimized</strong> by calculating <code>color_count_codeword</code> at the beginning.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#75715e">// n and k is given, as above
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">int</span> black <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+<span style="color:#66d9ef">int</span> white <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; 
+std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">&gt;</span> color_count_codeword <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(k, <span style="color:#ae81ff">0</span>)
+std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span> <span style="color:#66d9ef">int</span> <span style="color:#f92672">&gt;</span> color_count_query <span style="color:#f92672">=</span> std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span>(k, <span style="color:#ae81ff">0</span>)
+
+<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; i <span style="color:#f92672">&lt;</span> n, i<span style="color:#f92672">++</span>){ <span style="color:#75715e">// n - length of codeword
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">if</span>(codeword[i] <span style="color:#f92672">==</span> query[i]){
+		black<span style="color:#f92672">++</span>;
+	}
+	color_count_codeword[ codeword[i] ]<span style="color:#f92672">++</span>;
+	color_count_query[ query[i] ]<span style="color:#f92672">++</span>;
+}
+<span style="color:#66d9ef">for</span>(<span style="color:#66d9ef">int</span> j <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; j <span style="color:#f92672">&lt;</span> k, j<span style="color:#f92672">++</span>){ <span style="color:#75715e">//k - number of colors
+</span><span style="color:#75715e"></span>	white <span style="color:#f92672">+=</span> min(color_count_query[i],color_count_codeword[i]); 
+	<span style="color:#75715e">// either use std::min() or own implementation
+</span><span style="color:#75715e"></span>}
+white <span style="color:#f92672">-=</span> black;
+<span style="color:#75715e">/* done, return black and white */</span></code></pre></div>
+<h3 id="complexity-of-the-code-maker-s-algorithms">Complexity of the <em>code maker&rsquo;s</em> algorithms</h3>
+
+<p>The complexity of the two algorithms is:</p>
+
+<ul>
+<li>Time complexity: $O(n+k)$<br /></li>
+<li>Space complexity: $O(k)$<br /></li>
+</ul>
+
+<p>One can hardly optimize these complexities. Also, it is not a goal of my solution to do so, as the <em>code maker&rsquo;s</em> response is considered to be a rather externally given mechanism. It certainly could be optimised by omitting white pegs - as we will be shown later -, but again, this would be an interference with the external mechanism and the rules of the game.</p>
+
+<h2 id="the-code-solver">The code solver</h2>
+
+<p>In the rest of this document we will predominantly speak in terms of number of <em>queries</em> (<em>query complexity</em>) and will distinguish distinguish this term from <em>time complexity</em> and <em>space complexity</em>.</p>
+
+<h3 id="review-of-strategies">Review of strategies</h3>
+
+<p>The strategies on the Internet and in research papers can be divided into 2 main approaches:</p>
+
+<ul>
+<li>Approach for small numbers: $n,k \leq 10$</li>
+<li>Approach for large numbers: $n,k &gt; 10$</li>
+</ul>
+
+<p><strong>Approaches for small numbers</strong> aim to find a optimal or suboptimal strategy, and therefore often feature algorithms iterating trough the whole space of possible <em>codes</em>, which is $k^n$. Consequently, these algorithms only work for small numbers, hence my naming of this approach. Some examples are:</p>
+
+<p><a href="#knuth"><strong>Knuth&rsquo;s algorithm</strong></a>
+Although being a subotimal strategy for $n=4, k=6$, the research paper provides some hints on how to generalize.</p>
+
+<p><strong>Player that never makes mistakes</strong><br />
+Is an approach in which the <em>solver</em> only queries codes which are not ruled out by his previous attempts. The query generation may be random or deliberate. Often is combined with the <strong><em><a href="https://en.wikipedia.org/wiki/Minimax" target="_blank">minimax</a></em></strong> method, which makes the query generation process deliberate for the price of $O((k^n)^2)$ time complexity.</p>
+
+<p><strong>Approaches for large numbers</strong> are characterized by systematic guessing, often resulting in overheads for small numbers. A good example of this kind of approach is the algorithm proposed by <a href="#DOERR"><strong>Doerr</strong>, Benjamin, et al. &ldquo;<strong>Playing mastermind with many colors.</strong>&ldquo;</a>.</p>
+
+<p>The following two sections will go trough the details and specific implementations of these 2 different approaches. The proposed solutions are my own.</p>
+
+<h3 id="approach-for-n-leq-10-player-that-makes-no-mistakes">Approach for $n \leq 10$: Player that makes no mistakes</h3>
+
+<p>The chosen algorithm for small numbers is the pure <em>player that makes no mistakes</em> algorithm. A pseudo description of the algorithm may be seen as follows:</p>
+
+<ol>
+<li>Let $b(A, B)$ and $w(A, B)$ be the functions returning the $b$ and $w$ values for two <em>codes</em> $A, B$. And let $S$ denote the <em>secret codeword</em> geenrated by the <em>maker</em>.</li>
+<li>Create a set of <em>codes</em> $PossibleCodes$ and fill it with all the possible <em>codes</em>.</li>
+<li>Select (randomly) a <em>code</em> $C$ from $PossibleCodes$ and query it&rsquo;s $b(C,S)$ and $w(C,S)$ from the <em>code maker</em>.</li>
+<li>Remove all codes $X$ from $PossibleCodes$ which do not satisfy $b(C,S)=b(X,S) \land w(C,S)=w(X,S)$.</li>
+<li>Repeat from step 3, until $b \neq n$.</li>
+</ol>
+
+<h4 id="generating-a-set-of-possible-codes">Generating a set of possible codes</h4>
+
+<p>The generation of a set of possible codes can be implemented in a particularly elegant way using recursion as follows. The function requires a <code>std::vector&lt;int&gt;</code> of size $n$ supplied.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#66d9ef">void</span> <span style="color:#a6e22e">generate_possible</span>(
+	<span style="color:#66d9ef">int</span> n,
+	<span style="color:#66d9ef">int</span> k, 
+	std<span style="color:#f92672">::</span>set<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;</span> <span style="color:#f92672">&amp;</span> possible_codes, 
+	std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">&amp;</span> code, 
+	<span style="color:#66d9ef">int</span> depth <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+	){
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> color <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; color<span style="color:#f92672">&lt;</span>k; color<span style="color:#f92672">++</span>){
+            code[depth]<span style="color:#f92672">=</span>color;
+            <span style="color:#66d9ef">if</span>(depth <span style="color:#f92672">==</span> n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>){
+                possible_codes.insert(code);
+            }
+            <span style="color:#66d9ef">else</span>{
+                generate_possible(n,k,possible_codes,code,depth<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+            }
+        }
+    }</code></pre></div>
+<h4 id="elimination-of-codes">Elimination of codes</h4>
+
+<p>The following segment of code is given the <code>black_hits</code> and <code>white_hits</code> values and it removes all impossible <em>codes</em>. The <code>evaluate</code> function  returns the $b, w$ values to the <code>black_measured</code>, <code>white_measured</code> variables.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C++" data-lang="C++"><span style="color:#66d9ef">int</span> black_measured;
+<span style="color:#66d9ef">int</span> white_measured;
+<span style="color:#66d9ef">for</span>(std<span style="color:#f92672">::</span>set<span style="color:#f92672">&lt;</span>std<span style="color:#f92672">::</span>vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">int</span><span style="color:#f92672">&gt;&gt;::</span>iterator code_it<span style="color:#f92672">=</span>possible_codes.begin();
+code_it <span style="color:#f92672">!=</span> possible_codes.end(); 
+code_it
+){
+    evaluate(C,<span style="color:#f92672">*</span>code_it,black_measured,white_measured);
+    <span style="color:#66d9ef">if</span>(black_hits<span style="color:#f92672">!=</span>black_measured <span style="color:#f92672">||</span> white_hits<span style="color:#f92672">!=</span>white_measured ){
+        possible_codes.erase(code_it<span style="color:#f92672">++</span>);
+    }
+    <span style="color:#66d9ef">else</span>{
+        code_it<span style="color:#f92672">++</span>;
+    }
+}</code></pre></div>
+<h4 id="complexity-and-performance">Complexity and performance</h4>
+
+<p>The time complexity has taken into account the time complexity of iterating trough a <code>std::set</code>, which using &ldquo;any kind of iterator&rdquo; according to § 24.2.1 of the <a href="#cppstandard">Standard for Programming
+Language C++11</a> is is $O(n)$ and therefore submissive to $O(k^n)$.</p>
+
+<ul>
+<li>Time complexity: $O(k^n)$</li>
+<li>Space complexity $O(n*k^n)$</li>
+</ul>
+
+<p>Due to the demanding time complexity, this algorithm is unsuitable for large numbers of possible codes. As a general rule of thumb $k^n &lt; 100 \space 000$ can be used as a condition approximating the feasibility of the computation. For my solution a similar condition is used. Exceeding that condition the program chooses to go with the strategy, described in the next section.</p>
+
+<h3 id="approach-for-n-10-binary-search">Approach for $n&gt;10$: Binary search</h3>
+
+<h4 id="stage-1-monochromatic-queries">Stage 1: Monochromatic queries</h4>
+
+<p>The first stage is rather simple. The code solver queries $i, i \epsilon [0,k)$ queries each consisting only of <em>color</em> $i$ (<strong><em>monochromatic</em></strong>).</p>
+
+<h5 id="example">Example</h5>
+
+<p>Let $n=4, k=6$ and let the secret <em>codeword</em> be:</p>
+
+<pre><code>1 4 4 2
+</code></pre>
+
+<p>Stage 1 would look like this:</p>
+
+<pre><code>0 0 0 0  Black: 0, White: 0 	// color 0  is present 0 times
+1 1 1 1  Black: 1, White: 0 	// color 1  is present 1 times
+2 2 2 2  Black: 1, White: 0 	// color 2  is present 1 times
+3 3 3 3  Black: 0, White: 0 	// color 3  is present 0 times
+4 4 4 4  Black: 2, White: 0 	// color 4  is present 2 times
+5 5 5 5  Black: 0, White: 0 	// color 5  is present 0 times
+</code></pre>
+
+<p>From these information we can set up an array of frequencies of colors which we will utilise in later stages.</p>
+
+<h5 id="complexity-of-stage-1">Complexity of Stage 1</h5>
+
+<ul>
+<li>Query complexity: $O(k)$</li>
+<li>Complexity of generating each query:
+
+<ul>
+<li>Time complexity: $O(n)$</li>
+<li>Space complexity: $O(n)$</li>
+</ul></li>
+</ul>
+
+<h4 id="stage-2-finding-a-dummy">Stage 2: Finding a dummy</h4>
+
+<p>We will consider a <strong><em>dummy code</em></strong> any <em>code</em> that gives a response of zero black pegs. A trivial <em>dummy</em> might be a <em>monochromatic</em> sequence tried in <em>stage 1</em>. Since nothing guarntees that such a <em>monochromatic</em> query will exist, this shortcut is implemented just as an <strong>optimisation</strong>.</p>
+
+<p>To <strong>guaranteedly find a <em>dummy</em></strong> we <em>query</em> $n$ <em>codes</em> with one <code>1</code> on position $i, i \epsilon [0,n) $, and the remaining  $n-1$ slots filled with <code>0</code>-s. Let $C_0$ be the number of <code>0</code>-s in the <em>codeword</em> and $c_i$ the i-th <em>color</em> of the <em>codeword</em>. Than for each value of $i$ three cases are possible based on the number of black pegs $b_i$ received as <em>response</em> to such a <em>query</em>:</p>
+
+<ol>
+<li>$C_0 &lt; b_i \implies c_i = 1$</li>
+<li>$C_0 = b_i  \implies c_i \neq 1, c_i \neq 0$</li>
+<li>$C_0 &gt; b_i \implies c_i = 0$</li>
+</ol>
+
+<p>Another <strong>optimization</strong> is implemented: if this stage <strong>is</strong> taken (<em>i.e.</em> no <em>dummy</em> found in stage 1), we discover the positions of all <code>0</code>s and <code>1</code>s and in the next stage we don&rsquo;t have to deal with them.</p>
+
+<h5 id="example-1">Example</h5>
+
+<p>Let $n=4, k=6$ and let the secret <em>codeword</em> be:</p>
+
+<pre><code>3 1 0 5
+</code></pre>
+
+<p>Note, that this stage would have been skipped in this case, although we will pretend that the optimization was not implemented. In stage 1 we already tested <code>0 0 0 0</code> with result <code>Black: 1, White: 0</code>.</p>
+
+<p>The queries stage 2 would be:</p>
+
+<pre><code>1 0 0 0  Black: 1, White: 1 	// position 1 is neither 0 nor 1
+0 1 0 0  Black: 2, White: 0 	// position 2 is 1
+0 0 1 0  Black: 0, White: 2 	// position 3 is 0
+0 0 0 1  Black: 1, White: 1 	// position 4 is neither 0 nor 0
+
+The codeword is: X 1 0 X 	// X = unknown
+A dummy code is: 0 0 1 0
+</code></pre>
+
+<h5 id="complexity-of-stage-2">Complexity of Stage 2</h5>
+
+<ul>
+<li>Query complexity: $O(n)$</li>
+<li>Complexity of generating each query:
+
+<ul>
+<li>Time complexity: $O(n)$</li>
+<li>Space complexity: $O(n)$</li>
+</ul></li>
+</ul>
+
+<h4 id="stage-3-binary-search">Stage 3: Binary search</h4>
+
+<p>The dummy sequence is a profoundly useful tool. It enables us to query the number of occurences of color $C$ in arbitrary ranges of positions. We can do this by submitting the following query:</p>
+
+<pre><code>D0 D1 C C C D5 D6 D7
+</code></pre>
+
+<p>where <code>D</code>-s are the <em>colors</em> of the dummy code. The <em>response</em> $b$ for this q<em>uery</em> would represent the number of occurences of color $C$ in range of positions $2$,$3$ and $4$.</p>
+
+<h5 id="interval-tree">Interval tree</h5>
+
+<p>Stage 3 consist of $c, c \epsilon [0,k)$ <strong><em>substages</em></strong>. Each <em>substage</em> finds all the positions of color $c$. It does so using a <strong><em>Interval tree</em></strong> as follows:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-c++" data-lang="c++"><span style="color:#66d9ef">struct</span> interval_node{
+	<span style="color:#66d9ef">int</span> min;				<span style="color:#75715e">// values from (including)
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">int</span> max;				<span style="color:#75715e">// values upto (including)
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">int</span> remaining;			<span style="color:#75715e">// count of potentially 
+</span><span style="color:#75715e"></span>							<span style="color:#75715e">// present colors c under this interval
+</span><span style="color:#75715e"></span>	interval_node <span style="color:#f92672">*</span> left;	<span style="color:#75715e">// interval [min,floor((min+max)/2)]
+</span><span style="color:#75715e"></span>	interval_node <span style="color:#f92672">*</span> right;	<span style="color:#75715e">// interval [ceil((min+max)/2), max]
+</span><span style="color:#75715e"></span>	interval_node <span style="color:#f92672">*</span> parent;	<span style="color:#75715e">// pointer to parent, NULL for root
+</span><span style="color:#75715e"></span>};</code></pre></div>
+<p>This data structure satisfies the following criteria:</p>
+
+<ul>
+<li>Binary tree</li>
+<li>Search tree (ordered)</li>
+<li>Interval (segment) tree</li>
+<li>Upwards and downwards traversible tree</li>
+</ul>
+
+<p>The following conditions will be always true for this <em>interval tree</em>:</p>
+
+<ol>
+<li>In the beginning each interval has a <code>remaining</code> equal to the number of occurences of the given <em>color</em>.</li>
+<li>A interval <code>A</code>&rsquo;s <strong><em>span</em></strong> should be the value equal to <code>A.max-A.min+1</code></li>
+<li>An intervall shall be called <strong><em>accesible</em></strong> if all its ancestors have <code>remaining &gt; 0</code>.</li>
+<li>After an interval <code>A</code> was <em>querried</em> then <code>A</code>&lsquo;a <em>sibling&rsquo;s</em> <code>remaining</code> is set equal to <code>A.parent-&gt;remaining - A.remaining</code>.</li>
+<li>From the latter follows that if an interval was querried, it&rsquo;s <em>sibling</em> is considered <strong><em>effectively querried</em></strong>, and both may be said to have been <strong><em>effectively querried</em></strong>.</li>
+<li>A interval <code>B</code> of positions is <em>discovered</em> (contains only <em>color</em> $c$) if <code>B.remaining == B.max - B.min + 1</code>. Then, <code>B.remaining</code> and all <code>B</code>&rsquo;s parents&rsquo;s <code>remainings</code> are reduced by <code>B</code>&rsquo;s <em>span</em>.</li>
+<li>It follows that if all instances of color $c$ are <em>discovered</em> the root interval node&rsquo;s <code>remaining</code> is 0 and the algorithm can proceed to the next <em>substage</em>.</li>
+</ol>
+
+<p>Now only one last piece of information is missing, which is: <strong>which <em>interval</em> should be <em>querried</em> next?</strong> From now on many possible implementations are possible, important should only be that the next interval should always be a <em>accesible</em> interval which&rsquo;s <em>parent</em> has already been <em>efectively querried</em>. Note, that from the recoursive nature of this statement it follows that a <em>querried</em> interval&rsquo;s all ancestors exluding the <em>root interval</em> have been <em>querried</em>. (Note, again, that the last note is not entirely true as the <em>root interval</em> has  &ldquo;effectively&rdquo; (now using this term in it&rsquo;s original meaning) already been querried in stage 1! 😜 )</p>
+
+<p>After each <em>querry</em> the <em>response of black pegs</em> has to be <em>teached</em> to the <em>interval tree</em> in accordance with rules 4, 6, ( and 7).</p>
+
+<p>The above mentioned rules are implemented in my program and for simplicity, their implementation won&rsquo;t be shown here. For the interested readers, the code is on my <a href="https://github.com/adamurban98/mastermind" target="_blank">github repository</a>.</p>
+
+<h5 id="complexity-od-stage-3">Complexity od Stage 3</h5>
+
+<ul>
+<li>Query complexity of stage 3: $O(n \log_2n)$</li>
+<li>Time complexity of generating each query: $O(\log_2n)$</li>
+<li>Time complexity of generating the interval tree for each color $O(n)$</li>
+<li>Overall time complexity (including <em>code maker&rsquo;s response</em>): $O(k * n + n^2 \log_2n)$</li>
+</ul>
+
+<h4 id="complexity-of-the-binary-search-algorithm">Complexity of the Binary search algorithm</h4>
+
+<p>A summary of <em>query complexity</em> of each stages:</p>
+
+<ul>
+<li>Stage 1: $O(k)$</li>
+<li>Stage 2: $O(n)$</li>
+<li>Stage 3: $O(n \log_2n)$</li>
+</ul>
+
+<p>The <em><strong>overall query complexity</strong></em> reduces to:</p>
+
+<p>$$O(k+n \log_2n)$$</p>
+
+<p>With a <em><strong>total running time complexity</strong></em>(including <em>code maker&rsquo;s response</em>) clearly dominated by stage 3 :</p>
+
+<p>$$O(k*n + n^2 \log_2n)$$</p>
+
+<p>As we can see a $k &gt;&gt; n$ would only have effect by prolonging stage 1. Also, research literature on this topic devotes attention mainly to the &ldquo;<em>prominent</em>&rdquo; case when $k \approx n$ as otherwise the game has lots of unused colors, or on the contrary many repetitive color. The latter results in a possible optimization of skipping stage 2, the former is exploited by the <em>interval tree</em>. For these reasons $k=n$ is assumed for comparing the complexities of algorithms of this kind.</p>
+
+<h5 id="comparing-with-other-systematic-algorithms">Comparing with other systematic algorithms</h5>
+
+<p>This algorithm features a rather modest space complexity ( $O(n+k)$ since we only need to maintain a $n$ sized binary interval tree and a constant number of arrays of size $n$ and $k$), compared to the algorithms in the recent research papers, most prominently <a href="#DOERR">Doerr</a>, which maintain a set of <em>colors</em> of size $k$ for each position ($O(k*n)$)!</p>
+
+<p>In my personal opinion the achieved <em>time</em> and <em>query</em> complexity can be seen as a good result given the lightweight nature of this approach. On the other hand the <em>query complexity</em> of <a href="#DOERR">Doerr</a> is silghtly better: $O(n \log_2 \log_2 n)$, compared to mine $O(n \log_2 n)$.</p>
+
+<h5 id="optimizations-and-performance-boosts">Optimizations and performance boosts</h5>
+
+<blockquote>
+<p>“Premature optimization is the root of all evil”
+&mdash; D. Knuth</p>
+</blockquote>
+
+<p>A <strong>significant  <em>query</em> complexity optimization</strong> could be achieved by restricting the binary search to positions which have not been determined yet. This would however require a very much different interval tree, and possibly its re-building for each <em>color</em>.  Therefore this optimization was not implemented.</p>
+
+<p>The following two <strong><em>query</em> complexity optimizations</strong> were implemented because of their very simple implementation:</p>
+
+<ol>
+<li>Finding all <code>0</code>-s and <code>1</code>-s during stage 2</li>
+<li>Skipping stage 2 if a <em>monochromatic dummmy</em> is found in stage 1. (common for $n \lessapprox k$)</li>
+</ol>
+
+<p>Performance can be significantly boosted by <strong>omitting the printouts</strong> of the queried array ($O(n)$ time complexity). The difference is demonstrated below:</p>
+
+<p><img src="/images/mastermind/100x100_with.gif" alt="Binary search strategy on n=100, k=100m with printouts" />
+<div class='align-center'>
+  <strong>Binary search strategy on $n=100, k=100$, <em>with</em> printouts</strong>
+</div>
+</p>
+
+<p><img src="/images/mastermind/100x100_without.gif" alt="Binary search strategy on n=100, k=100, without printouts" /><div class='align-center'>
+  <strong>Binary search strategy on $n=100, k=100$, <em>without</em> printouts</strong>
+</div>
+</p>
+
+<h4 id="performance-and-summary">Performance and summary</h4>
+
+<p>Time has come to combine the two strategies. The following two graphs compare the average (32 samples) number of queries for $n,k \leq 20$:</p>
+
+<p><img src="/images/mastermind/nom_g_20.png" alt="/images/mastermind/nom_g_20.png" />
+<div class='align-center'>
+  <strong>Average [32] number of <em>queries</em> for * Plaer that makes no mistakes* algorithm for $n,k \leq 20$</strong>
+</div>
+</p>
+
+<p>By carefull inspection, one can see that even though for smaller $n,k$ the <em>binary search</em> method has large overheads in terms of queries, it can cover a substantially larger range of $n,k$.
+<img src="/images/mastermind/bin_g_20.png" alt="/images/mastermind/bin_g_20.png" />
+<div class='align-center'>
+  <strong>Average [32] number of <em>queries</em> for <em>Binary search</em> algorithm for $n,k \leq 20$</strong>
+</div>
+</p>
+
+<p>&hellip;indeed, this graph shows the performance of Binary search algorithm for $n,k \leq 100$. And that is not all: the <em>binary search</em> was tested up to $n,k=10 \space 000$.
+<img src="/images/mastermind/bin_g_100.png" alt="/images/mastermind/nom_g_100.png" />
+<div class='align-center'>
+  <strong>Average [32] number of <em>queries</em> for <em>Binary search</em> algorithm for $n,k \leq 100$</strong>
+</div>
+</p>
+
+<p>A combination of the two algorithms (<em>Player that makes no mistakes</em> and <em>Binary search</em>) guarantees for $n,k \leq 100$ a running time $&lt;1s$!
+The following table provides a informative overview of running times depending on $n,k$.</p>
+
+<table>
+<thead>
+<tr>
+<th>$n,k \leq $</th>
+<th>Running time</th>
+<th>Notes</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td>$6$</td>
+<td>$5 sec$</td>
+<td><em>nomistakes</em> algorithm</td>
+</tr>
+
+<tr>
+<td>$100$</td>
+<td>$1 sec$</td>
+<td><em>binary search</em> algorithm</td>
+</tr>
+
+<tr>
+<td>$1 \space 000$</td>
+<td>$1 min$</td>
+<td><em>binary search</em> algorithm</td>
+</tr>
+
+<tr>
+<td>$10 \space 000$</td>
+<td>$5 min$</td>
+<td><em>binary search</em> algorithm</td>
+</tr>
+</tbody>
+</table>
+
+<h4 id="notes-on-design-patterns-used">Notes on design patterns used</h4>
+
+<p>The <code>mm_colver</code> class-structure vauely implements a <strong>strategy design pattern</strong> by transfering the <code>create_attempt()</code> and <code>learn()</code> calls to the appropriate <code>strategy</code> call.</p>
+
+<p>The <code>Strategy_binary_search</code> class implements a <em>finite state pattern</em>.</p>
+
+<h2 id="references">References</h2>
+
+<ol>
+<li><p><span id="DOERR"><a href="https://arxiv.org/pdf/1207.0773" target="_blank"><strong>Doerr</strong>, Benjamin, et al. &ldquo;<strong>Playing mastermind with many colors.</strong>&rdquo; Journal of the ACM (JACM) 63.5 (2016): 42.</a></span></p></li>
+
+<li><p><span id="cppstandard"><a href="http://www.open-std.org/jtc1/sc22/wg21/docs/papers/2012/n3337.pdf" target="_blank">Working Draft, Standard for Programming
+Language C++11</a></span></p></li>
+
+<li><p><span id="knuth"><a href="http://colorcode.laebisch.com/links/Donald.E.Knuth.pdf" target="_blank"><strong>Knuth</strong>, Donald E. &ldquo;<strong>The computer as master mind.</strong>&rdquo; Journal of Recreational Mathematics 9.1 (1976): 1-6.</a></span></p></li>
+
+<li><p><a href="http://jmastermind.sourceforge.net/algorithm.html" target="_blank">Frans <strong>van Gool&rsquo;s</strong> MasterMind algorithm</a></p></li>
+
+<li><p><a href="https://arxiv.org/pdf/1305.1010.pdf" target="_blank"><strong>Ville</strong>, Geoffroy. &ldquo;<strong>An optimal mastermind (4, 7) strategy and more results in the expected case.</strong>&rdquo; arXiv preprint arXiv:1305.1010 (2013).</a></p></li>
+</ol>
+
+</div>
+
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'>
+  
+  </div>
+</footer>
+
+
+</article>
+
+<nav class='entry-nav'>
+  <div class='container'><div class='prev-entry sep-before'>
+      <a href='/deprep2018/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ Previous</span>
+        <span class='screen-reader-text'>Previous post: </span>EIE DepRep 2018 campaign</a>
+    </div></div>
+</nav>
+
+
+
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'>
+          <section class='widget widget-social_menu sep-after'><nav aria-label='Social Menu'>
+    <ul><li>
+        <a href='https://github.com/adamurban98' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Github account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://facebook.com/adamurban1998' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Facebook account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='mailto:adamurban98@gmail.com' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Contact via Email</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+  <polyline points="22,6 12,13 2,6"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='https://linkedin.com/in/adamurban98' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Linkedin account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+  <rect x="2" y="9" width="4" height="12"/>
+  <circle cx="4" cy="4" r="2"/>
+  
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</section>
+
+          <div class='copyright'>
+  <p> &copy; 2018 Ádám Urbán </p>
+</div>
+
+        </div>
+      </footer>
+
+    </div>
+  </div><div class='sidebar-overlay'></div><script>window.__public_path__='\/assets\/js\/'</script>
+
+<script src='/assets/js/main.80cd10bb.js'></script><script src='/js/custom.js'></script><script type='text/x-mathjax-config'>
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"processEscapes":true}})
+</script>
+
+<script type='text/javascript' async src='//unpkg.com/mathjax/MathJax.js?config=TeX-MML-AM_CHTML'></script>
+</body>
+
+</html>
+
